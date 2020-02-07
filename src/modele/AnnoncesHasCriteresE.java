@@ -5,12 +5,12 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Annonces_has_Criteres", schema = "LeBon2i", catalog = "")
+@Table(name = "Annonces_has_Criteres", schema = "LeBon2i")
 @IdClass(AnnoncesHasCriteresEPK.class)
 public class AnnoncesHasCriteresE {
     private int annoncesIdAnnonces;
     private int criteresIdCriteres;
-    private Integer valeurInt;
+    private Float valeurInt;
     private String valeurText;
     private Date valeurDate;
 
@@ -36,11 +36,11 @@ public class AnnoncesHasCriteresE {
 
     @Basic
     @Column(name = "valeurInt")
-    public Integer getValeurInt() {
+    public Float getValeurInt() {
         return valeurInt;
     }
 
-    public void setValeurInt(Integer valeurInt) {
+    public void setValeurInt(Float valeurInt) {
         this.valeurInt = valeurInt;
     }
 

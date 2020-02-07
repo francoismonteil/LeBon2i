@@ -4,11 +4,11 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "Valeurs_possibles", schema = "LeBon2i", catalog = "")
+@Table(name = "Valeurs_possibles", schema = "LeBon2i")
 @IdClass(ValeursPossiblesEPK.class)
 public class ValeursPossiblesE {
     private int idValeursPossibles;
-    private Integer valeurInt;
+    private Float valeurInt;
     private String valeurText;
     private int criteresIdCriteres;
 
@@ -24,11 +24,11 @@ public class ValeursPossiblesE {
 
     @Basic
     @Column(name = "valeurInt")
-    public Integer getValeurInt() {
+    public Float getValeurInt() {
         return valeurInt;
     }
 
-    public void setValeurInt(Integer valeurInt) {
+    public void setValeurInt(Float valeurInt) {
         this.valeurInt = valeurInt;
     }
 
