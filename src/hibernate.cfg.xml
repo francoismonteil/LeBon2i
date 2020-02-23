@@ -4,20 +4,26 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-    <property name="connection.url">jdbc:mysql://192.168.22.128:3306/LeBon2i</property>
-    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-      <mapping class="modele.AnnoncesE"/>
-      <mapping class="modele.AnnoncesHasCriteresE"/>
-      <mapping class="modele.CategoriesE"/>
-      <mapping class="modele.CriteresE"/>
-      <mapping class="modele.SurCategoriesE"/>
-      <mapping class="modele.UtilisateursE"/>
-      <mapping class="modele.ValeursPossiblesE"/>
-      <mapping class="modele.VillesE"/>
-      <!-- <property name="connection.username"/> -->
-    <!-- <property name="connection.password"/> -->
 
-    <!-- DB schema will be updated if needed -->
-    <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    <property name = "hibernate.dialect">
+      org.hibernate.dialect.MySQLDialect
+    </property>
+
+    <property name = "hibernate.connection.driver_class">
+      com.mysql.jdbc.Driver
+    </property>
+
+    <property name = "hibernate.connection.url">
+      jdbc:mysql://localhost/lebon2i?serverTimezone=UTC
+    </property>
+
+    <property name = "hibernate.connection.username">
+      root
+    </property>
+
+    <property name = "hibernate.connection.password">
+      root
+    </property>
+
   </session-factory>
 </hibernate-configuration>
