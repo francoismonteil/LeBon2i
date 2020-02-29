@@ -18,12 +18,31 @@ public class Categorie {
     @JoinColumn(name="SURCATEGORIES_IDSURCATEGORIES",referencedColumnName = "IDSURCATEGORIES",nullable = true)
     private SurCategorie surCategorie;
 
-    @OneToMany(mappedBy="CATEGORIES_IDCATEGORIES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="categorie", cascade = {CascadeType.ALL})
     private List<Annonce> annonces;
 
-    @OneToMany(mappedBy="CATEGORIES_IDCATEGORIES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="categorie", cascade = {CascadeType.ALL})
     private List<Critere> criteres;
 
-    public Categorie() {
+    public Categorie(int idCategories, String label, SurCategorie surCategorie) {
+        this.idCategories = idCategories;
+        this.label = label;
+        this.surCategorie = surCategorie;
+    }
+
+    public Categorie(String label, SurCategorie surCategorie) {
+        this.label = label;
+        this.surCategorie = surCategorie;
+    }
+
+    @Override
+    public String toString() {
+        return "Categorie{" +
+                "idCategories=" + idCategories +
+                ", label='" + label + '\'' +
+                ", surCategorie=" + surCategorie +
+                ", annonces=" + annonces +
+                ", criteres=" + criteres +
+                '}';
     }
 }

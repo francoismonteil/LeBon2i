@@ -14,9 +14,15 @@ public class SurCategorie {
     @Column(name = "LABEL")
     private String label;
 
-    @OneToMany(mappedBy="SURCATEGORIES_IDSURCATEGORIES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="surCategorie", cascade = {CascadeType.ALL})
     private List<Categorie> categories;
 
-    public SurCategorie() {
+    public SurCategorie(int idSurCategories, String label) {
+        this.idSurCategories = idSurCategories;
+        this.label = label;
+    }
+
+    public SurCategorie(String label) {
+        this.label = label;
     }
 }

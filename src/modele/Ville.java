@@ -19,12 +19,31 @@ public class Ville {
     @Column(name = "NOMVILLE")
     private String nomVille;
 
-    @OneToMany(mappedBy="VILLES_IDVILLES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="ville", cascade = {CascadeType.ALL})
     private List<Utilisateur> utilisateurs;
 
-    @OneToMany(mappedBy="VILLES_IDVILLES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="ville", cascade = {CascadeType.ALL})
     private List<Annonce> annonces;
 
-    public Ville() {
+    public Ville(int idVilles, String codePostal, String nomVille) {
+        this.idVilles = idVilles;
+        this.codePostal = codePostal;
+        this.nomVille = nomVille;
+    }
+
+    public Ville(String codePostal, String nomVille) {
+        this.codePostal = codePostal;
+        this.nomVille = nomVille;
+    }
+
+    @Override
+    public String toString() {
+        return "Ville{" +
+                "idVilles=" + idVilles +
+                ", codePostal='" + codePostal + '\'' +
+                ", nomVille='" + nomVille + '\'' +
+                ", utilisateurs=" + utilisateurs +
+                ", annonces=" + annonces +
+                '}';
     }
 }

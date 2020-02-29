@@ -38,9 +38,50 @@ public class Annonce {
     @JoinColumn(name="VILLES_IDVILLES",referencedColumnName = "IDVILLES",nullable = true)
     private Ville ville;
 
-    @OneToMany(mappedBy="ANNONCES_IDANNONCES", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="annonce", cascade = {CascadeType.ALL})
     private List<AnnoncesHasCriteres> annoncesHasCriteres;
 
-    public Annonce() {
+    public Annonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) {
+        this.titre = titre;
+        this.description = description;
+        this.prix = prix;
+        this.image = image;
+        this.utilisateur = utilisateur;
+        this.categorie = categorie;
+        this.ville = ville;
+    }
+
+    public Annonce(int idAnnonces, String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) {
+        this.idAnnonces = idAnnonces;
+        this.titre = titre;
+        this.description = description;
+        this.prix = prix;
+        this.image = image;
+        this.utilisateur = utilisateur;
+        this.categorie = categorie;
+        this.ville = ville;
+    }
+
+    public int getIdAnnonces() {
+        return idAnnonces;
+    }
+
+    public void setIdAnnonces(int idAnnonces) {
+        this.idAnnonces = idAnnonces;
+    }
+
+    @Override
+    public String toString() {
+        return "Annonce{" +
+                "idAnnonces=" + idAnnonces +
+                ", titre='" + titre + '\'' +
+                ", description='" + description + '\'' +
+                ", prix=" + prix +
+                ", image='" + image + '\'' +
+                ", utilisateur=" + utilisateur.toString() +
+                ", categorie=" + categorie.toString() +
+                ", ville=" + ville.toString() +
+                ", annoncesHasCriteres=" + annoncesHasCriteres +
+                '}';
     }
 }

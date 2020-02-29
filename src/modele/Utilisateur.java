@@ -47,9 +47,52 @@ public class Utilisateur {
     @JoinColumn(name="VILLES_IDVILLES",referencedColumnName = "IDVILLES",nullable = true)
     private Ville ville;
 
-    @OneToMany(mappedBy="UTILISATEURS_IDUTILISATEURS", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="utilisateur", cascade = {CascadeType.ALL})
     private List<Annonce> annonces;
 
     public Utilisateur() {
+
+    }
+
+    public Utilisateur(int idUtilisateurs, String prenom, String nom, Date dateNaissance, String adresse, String tel, String mail, String motDePasse, int admin, Ville ville) {
+        this.idUtilisateurs = idUtilisateurs;
+        this.prenom = prenom;
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.mail = mail;
+        this.motDePasse = motDePasse;
+        this.admin = admin;
+        this.ville = ville;
+    }
+
+    public Utilisateur(String prenom, String nom, Date dateNaissance, String adresse, String tel, String mail, String motDePasse, int admin, Ville ville) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.dateNaissance = dateNaissance;
+        this.adresse = adresse;
+        this.tel = tel;
+        this.mail = mail;
+        this.motDePasse = motDePasse;
+        this.admin = admin;
+        this.ville = ville;
+    }
+
+    @Override
+    public String toString() {
+        return "Utilisateur{" +
+                "idUtilisateurs=" + idUtilisateurs +
+                ", prenom='" + prenom + '\'' +
+                ", nom='" + nom + '\'' +
+                ", dateNaissance=" + dateNaissance +
+                ", adresse='" + adresse + '\'' +
+                ", tel='" + tel + '\'' +
+                ", mail='" + mail + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
+                ", admin=" + admin +
+                ", ville=" + ville +
+                ", annonces=" + annonces +
+                '}';
     }
 }

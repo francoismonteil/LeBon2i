@@ -1,16 +1,24 @@
 package modele;
 import javax.persistence.*;
+import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "annonces_has_criteres", schema = "lebon2i", catalog = "")
 public class AnnoncesHasCriteres {
 
-    @ManyToOne
-    @JoinColumn(name="ANNONCES_IDANNONCES",referencedColumnName = "IDANNONCES",nullable = true)
-    private Annonce annonce;
+    @EmbeddedId
+    private AnnoncesHasCriteresId id;
 
     @ManyToOne
-    @JoinColumn(name="CRITERES_IDCRITERES",referencedColumnName = "IDCRITERES",nullable = true)
+    @MapsId("ANNONCES_IDANNONCES")
+    //@JoinColumn(name="ANNONCES_IDANNONCES",referencedColumnName = "IDANNONCES",nullable = true)
+    private Annonce annonce;
+
+
+    @ManyToOne
+    @MapsId("CRITERES_IDCRITERES")
+    //@JoinColumn(name="CRITERES_IDCRITERES",referencedColumnName = "IDCRITERES",nullable = true)
     private Critere critere;
 
     @Basic
@@ -19,12 +27,35 @@ public class AnnoncesHasCriteres {
 
     @Basic
     @Column(name = "VALEURTEXT")
-    private Float valeurText;
+    private String valeurText;
 
     @Basic
     @Column(name = "VALEURDATE")
-    private Float valeurDate;
+    private Date valeurDate;
 
-    public AnnoncesHasCriteres() {
+    public AnnoncesHasCriteres(){
+    }
+
+    public AnnoncesHasCriteres(Annonce annonce, Critere critere, float valeurInt, String valeurText, Date valeurDate) {
+        this.annonce = annonce;
+        this.critere = critere;
+        this.id = new AnnoncesHasCriteresId(annonce.getIdAnnonces(), critere.getIdCriteres());
+        this.valeurInt = valeurInt;
+        this.valeurText = valeurText;
+        this.valeurDate = valeurDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AnnoncesHasCriteres that = (AnnoncesHasCriteres) o;
+        return Objects.equals(annonce, that.annonce) &&
+                Objects.equals(critere, that.critere);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(annonce, critere);
     }
 }
