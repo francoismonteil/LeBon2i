@@ -1,7 +1,6 @@
 package vue;
 import javax.swing.*;
 import java.awt.*;
-import java.text.NumberFormat;
 
 public class Accueil extends JFrame{
     private JPanel zone1 = new JPanel();

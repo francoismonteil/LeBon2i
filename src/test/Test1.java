@@ -1,10 +1,10 @@
 package test;
 
-import vue.Accueil;
+import vue.Inscription;
 
 public class Test1 {
     public static void main(String[] args) {
-        Accueil fenetre = new Accueil();
+        Inscription fenetre = new Inscription();
         System.out.println("Coucou");
     }
 }
