@@ -4,7 +4,7 @@ import javax.rmi.CORBA.Util;
 import java.util.List;
 
 @Entity
-@Table(name = "villes", schema = "lebon2i", catalog = "")
+@Table(name = "Villes", schema = "lebon2i", catalog = "")
 public class Ville {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

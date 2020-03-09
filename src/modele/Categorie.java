@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "categories", schema = "lebon2i", catalog = "")
+@Table(name = "Categories", schema = "lebon2i", catalog = "")
 public class Categorie {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -30,6 +30,10 @@ public class Categorie {
         this.surCategorie = surCategorie;
     }
 
+    /**
+     * @param label
+     * @param surCategorie
+     */
     public Categorie(String label, SurCategorie surCategorie) {
         this.label = label;
         this.surCategorie = surCategorie;
@@ -37,12 +41,10 @@ public class Categorie {
 
     @Override
     public String toString() {
-        return "Categorie{" +
-                "idCategories=" + idCategories +
-                ", label='" + label + '\'' +
-                ", surCategorie=" + surCategorie +
-                ", annonces=" + annonces +
-                ", criteres=" + criteres +
-                '}';
+        return label;
+    }
+
+    public int getIdCategories() {
+        return idCategories;
     }
 }

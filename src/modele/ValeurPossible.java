@@ -2,7 +2,7 @@ package modele;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "valeurs_possibles", schema = "lebon2i", catalog = "")
+@Table(name = "Valeurs_possibles", schema = "lebon2i", catalog = "")
 public class ValeurPossible {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

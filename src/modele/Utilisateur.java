@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "utilisateurs", schema = "lebon2i", catalog = "")
+@Table(name = "Utilisateurs", schema = "lebon2i", catalog = "")
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)

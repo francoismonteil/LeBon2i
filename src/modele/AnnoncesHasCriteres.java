@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "annonces_has_criteres", schema = "lebon2i", catalog = "")
+@Table(name = "Annonces_has_Criteres", schema = "lebon2i", catalog = "")
 public class AnnoncesHasCriteres {
 
     @EmbeddedId

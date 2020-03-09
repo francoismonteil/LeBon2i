@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "surCategories", schema = "lebon2i", catalog = "")
+@Table(name = "SurCategories", schema = "lebon2i", catalog = "")
 public class SurCategorie {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -22,7 +22,19 @@ public class SurCategorie {
         this.label = label;
     }
 
+    /**
+     * @param label
+     */
     public SurCategorie(String label) {
         this.label = label;
+    }
+
+    public int getIdSurCategories() {
+        return idSurCategories;
+    }
+
+    @Override
+    public String toString() {
+        return label;
     }
 }

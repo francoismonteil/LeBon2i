@@ -3,7 +3,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "criteres", schema = "lebon2i", catalog = "")
+@Table(name = "Criteres", schema = "lebon2i", catalog = "")
 public class Critere {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
