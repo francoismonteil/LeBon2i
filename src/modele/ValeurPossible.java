@@ -37,6 +37,11 @@ public class ValeurPossible {
         this.critere = critere;
     }
 
+    public ValeurPossible(String valeurText, Critere critere){
+        this.valeurText = valeurText;
+        this.critere = critere;
+    }
+
     public int getIdValeursPossibles() {
         return idValeursPossibles;
     }

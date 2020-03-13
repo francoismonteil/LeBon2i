@@ -39,7 +39,7 @@ public class Ajout extends JFrame implements ActionListener {
         //On créer des catégories et on les ajoutes à la liste
         Categorie cat1 = new Categorie("Voiture", scat1);
         cats.add(cat1);
-        Categorie cat2 = new Categorie("Voiture", scat1);
+        Categorie cat2 = new Categorie("Moto", scat1);
         cats.add(cat2);
         for (Categorie cat: cats) {
             this.combobox_categorie.addItem(cat);
