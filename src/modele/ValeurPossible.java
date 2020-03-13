@@ -37,6 +37,22 @@ public class ValeurPossible {
         this.critere = critere;
     }
 
+    public int getIdValeursPossibles() {
+        return idValeursPossibles;
+    }
+
+    public Float getValeurInt() {
+        return valeurInt;
+    }
+
+    public String getValeurText() {
+        return valeurText;
+    }
+
+    public Critere getCritere() {
+        return critere;
+    }
+
     @Override
     public String toString() {
         return "ValeurPossible{" +

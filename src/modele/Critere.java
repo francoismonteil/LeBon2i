@@ -35,6 +35,10 @@ public class Critere {
         this.categorie = categorie;
     }
 
+    public Critere() {
+
+    }
+
     public Critere(String label, String type, Categorie categorie) {
         this.label = label;
         this.type = type;
@@ -43,6 +47,26 @@ public class Critere {
 
     public int getIdCriteres() {
         return idCriteres;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public List<AnnoncesHasCriteres> getAnnoncesHasCriteres() {
+        return annoncesHasCriteres;
+    }
+
+    public List<ValeurPossible> getValeurPossibles() {
+        return valeurPossibles;
     }
 
     public void setIdCriteres(int idCriteres) {

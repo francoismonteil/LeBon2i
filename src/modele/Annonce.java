@@ -41,6 +41,9 @@ public class Annonce {
     @OneToMany(mappedBy="annonce", cascade = {CascadeType.ALL})
     private List<AnnoncesHasCriteres> annoncesHasCriteres;
 
+    public Annonce(){
+
+    }
     public Annonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) {
         this.titre = titre;
         this.description = description;
@@ -64,6 +67,38 @@ public class Annonce {
 
     public int getIdAnnonces() {
         return idAnnonces;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public Ville getVille() {
+        return ville;
+    }
+
+    public List<AnnoncesHasCriteres> getAnnoncesHasCriteres() {
+        return annoncesHasCriteres;
     }
 
     public void setIdAnnonces(int idAnnonces) {

@@ -30,6 +30,9 @@ public class Categorie {
         this.surCategorie = surCategorie;
     }
 
+    public Categorie() {
+    }
+
     /**
      * @param label
      * @param surCategorie
@@ -39,12 +42,30 @@ public class Categorie {
         this.surCategorie = surCategorie;
     }
 
+    public int getIdCategories() {
+        return idCategories;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public SurCategorie getSurCategorie() {
+        return surCategorie;
+    }
+
+    public List<Annonce> getAnnonces() {
+        return annonces;
+    }
+
+    public List<Critere> getCriteres() {
+        return criteres;
+    }
+
     @Override
     public String toString() {
         return label;
     }
 
-    public int getIdCategories() {
-        return idCategories;
-    }
+
 }

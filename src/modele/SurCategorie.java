@@ -22,6 +22,10 @@ public class SurCategorie {
         this.label = label;
     }
 
+    public SurCategorie(){
+
+    }
+
     /**
      * @param label
      */
@@ -32,6 +36,11 @@ public class SurCategorie {
     public int getIdSurCategories() {
         return idSurCategories;
     }
+
+    public String getLabel() {
+        return label;
+    }
+
 
     @Override
     public String toString() {

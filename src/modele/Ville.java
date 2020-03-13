@@ -25,6 +25,9 @@ public class Ville {
     @OneToMany(mappedBy="ville", cascade = {CascadeType.ALL})
     private List<Annonce> annonces;
 
+    public Ville(){
+
+    }
     public Ville(int idVilles, String codePostal, String nomVille) {
         this.idVilles = idVilles;
         this.codePostal = codePostal;
