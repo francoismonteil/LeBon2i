@@ -6,6 +6,8 @@ import modele.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -84,13 +86,13 @@ public class EcouteurAjout extends Thread {
         }
     }
 
-    public boolean addAnnonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville){
+    public boolean addAnnonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) throws ParseException {
         Annonce annonce = new Annonce(titre, description, prix, image, utilisateur, categorie, ville);
         annonceManager.create(annonce);
         for(int ite=0;ite<crits.size();ite++){
             if(crits.get(ite).getType().equals("int")){
                 JTextField value = (JTextField)valeurs.get(ite);
-                int valueInt = Integer.parseInt(value.getText());
+                float valueInt = Float.parseFloat(value.getText());
                 AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueInt);
                 ahcManager.create(ahc);
             }else if(crits.get(ite).getType().equals("ComboBox")){
@@ -99,9 +101,13 @@ public class EcouteurAjout extends Thread {
                 String valueString = Objects.requireNonNull(value.getSelectedItem()).toString();
                 AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueString);
                 ahcManager.create(ahc);
+            }else if(crits.get(ite).getType().equals("date")){
+                JTextField value = (JTextField)valeurs.get(ite);
+                Date valueDate = new SimpleDateFormat("dd/MM/yyyy").parse(value.getText());
+                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueDate);
+                ahcManager.create(ahc);
             }
         }
-
         return true;
     }
 }

@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Collection;
 
 public class Ajout extends JFrame implements ActionListener {
@@ -114,8 +115,12 @@ public class Ajout extends JFrame implements ActionListener {
             Utilisateur utilisateur = utilisateurManager.find(Utilisateur.class, 1);
             Categorie categorie = (Categorie)combobox_categorie.getSelectedItem();
             Ville ville = utilisateur.getVille();
-            if(ea.addAnnonce(titre, description, prix, null, utilisateur, categorie, ville)){
-                this.dispose();
+            try {
+                if(ea.addAnnonce(titre, description, prix, null, utilisateur, categorie, ville)){
+                    this.dispose();
+                }
+            } catch (ParseException ex) {
+                ex.printStackTrace();
             }
         }
     }
