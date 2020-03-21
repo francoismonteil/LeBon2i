@@ -2,7 +2,7 @@
 Fake Le bon coin<br>
 Team : 
 - François Monteil
-- Jean Sturemski
+- Jean Szturemski
 - Leandre Carpentier
 - Alexandre Bodart
 
