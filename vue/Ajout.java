@@ -1,8 +1,6 @@
 package vue;
 import DAO.UtilisateurDao;
-import DAO.ValeurPossibleDao;
 import JPA.JpaUtilisateurDao;
-import JPA.JpaValeurPossibleDao;
 import modele.Categorie;
 import modele.SurCategorie;
 import modele.Utilisateur;
@@ -13,7 +11,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
-import java.util.Collection;
 
 public class Ajout extends JFrame implements ActionListener {
     private EcouteurAjout ea = new EcouteurAjout(this);
@@ -26,9 +23,13 @@ public class Ajout extends JFrame implements ActionListener {
     private JTextField textField_titre;
     private JTextArea text_description;
     private JTextField text_prix;
+    private Utilisateur utilisateur;
     private UtilisateurDao utilisateurManager = new JpaUtilisateurDao();
+    private MesAnnonces mesAnnonces;
 
-    public Ajout(){
+    public Ajout(Utilisateur utilisateur, MesAnnonces mesAnnonces){
+        this.utilisateur = utilisateur;
+        this.mesAnnonces = mesAnnonces;
         this.setTitle("LeBon2i");
         this.setSize(500, 600);
         this.setLocationRelativeTo(null);
@@ -112,13 +113,12 @@ public class Ajout extends JFrame implements ActionListener {
             String titre = textField_titre.getText();
             String description = text_description.getText();
             float prix = Float.parseFloat(text_prix.getText());
-            Utilisateur utilisateur = utilisateurManager.find(Utilisateur.class, 1);
             Categorie categorie = (Categorie)combobox_categorie.getSelectedItem();
-            Ville ville = utilisateur.getVille();
+            Ville ville = this.utilisateur.getVille();
+
             try {
-                if(ea.addAnnonce(titre, description, prix, null, utilisateur, categorie, ville)){
-                    this.dispose();
-                }
+                mesAnnonces.refreshTable(ea.addAnnonce(titre, description, prix, null, this.utilisateur, categorie, ville));
+                this.dispose();
             } catch (ParseException ex) {
                 ex.printStackTrace();
             }

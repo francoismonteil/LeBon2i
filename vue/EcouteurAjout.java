@@ -86,7 +86,7 @@ public class EcouteurAjout extends Thread {
         }
     }
 
-    public boolean addAnnonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) throws ParseException {
+    public Annonce addAnnonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) throws ParseException {
         Annonce annonce = new Annonce(titre, description, prix, image, utilisateur, categorie, ville);
         annonceManager.create(annonce);
         for(int ite=0;ite<crits.size();ite++){
@@ -108,6 +108,6 @@ public class EcouteurAjout extends Thread {
                 ahcManager.create(ahc);
             }
         }
-        return true;
+        return annonce;
     }
 }

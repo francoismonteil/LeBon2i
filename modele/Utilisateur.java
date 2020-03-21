@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Utilisateurs", schema = "lebon2i", catalog = "")
+@Table(name = "Utilisateurs", schema = "lebon2i")
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -85,6 +85,10 @@ public class Utilisateur {
 
     public void setVille(Ville ville) {
         this.ville = ville;
+    }
+
+    public int getIdUtilisateurs() {
+        return idUtilisateurs;
     }
 
     @Override

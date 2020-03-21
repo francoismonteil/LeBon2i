@@ -135,16 +135,6 @@ public class Annonce {
 
     @Override
     public String toString() {
-        return "Annonce{" +
-                "idAnnonces=" + idAnnonces +
-                ", titre='" + titre + '\'' +
-                ", description='" + description + '\'' +
-                ", prix=" + prix +
-                ", image='" + image + '\'' +
-                ", utilisateur=" + utilisateur.toString() +
-                ", categorie=" + categorie.toString() +
-                ", ville=" + ville.toString() +
-                ", annoncesHasCriteres=" + annoncesHasCriteres +
-                '}';
+        return this.titre;
     }
 }

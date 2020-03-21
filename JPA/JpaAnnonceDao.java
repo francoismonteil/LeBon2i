@@ -2,11 +2,14 @@ package JPA;
 
 import DAO.AnnonceDao;
 import modele.Annonce;
+import modele.Categorie;
 import org.hibernate.Session;
 
 import java.util.Collection;
 
 public class JpaAnnonceDao extends JpaDao<Annonce> implements AnnonceDao {
+    private Class classAnnonce = new Annonce().getClass();
+
     @Override
     public Session getSession() {
         return super.getSession();
@@ -45,5 +48,13 @@ public class JpaAnnonceDao extends JpaDao<Annonce> implements AnnonceDao {
     @Override
     public void close() {
         super.close();
+    }
+
+    @Override
+    public Collection<Annonce> findByUtilisateur(Integer idUtilisateur) {
+        return session.createQuery("SELECT c"
+                + " FROM " + classAnnonce.getName() + " AS c " +
+                "WHERE c.utilisateur =" + idUtilisateur
+        ).getResultList();
     }
 }
