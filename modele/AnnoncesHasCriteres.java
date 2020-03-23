@@ -11,13 +11,13 @@ public class AnnoncesHasCriteres {
     private AnnoncesHasCriteresId id;
 
     @ManyToOne
-    @MapsId("ANNONCES_IDANNONCES")
+    //@MapsId("Annonces_idAnnonces")
     //@JoinColumn(name="ANNONCES_IDANNONCES",referencedColumnName = "IDANNONCES",nullable = true)
     private Annonce annonce;
 
 
     @ManyToOne
-    @MapsId("CRITERES_IDCRITERES")
+    @MapsId("Criteres_idCriteres")
     //@JoinColumn(name="CRITERES_IDCRITERES",referencedColumnName = "IDCRITERES",nullable = true)
     private Critere critere;
 
@@ -61,6 +61,22 @@ public class AnnoncesHasCriteres {
         this.valeurInt = valeurInt;
         this.valeurText = valeurText;
         this.valeurDate = valeurDate;
+    }
+
+    public Critere getCritere() {
+        return critere;
+    }
+
+    public Float getValeurInt() {
+        return valeurInt;
+    }
+
+    public String getValeurText() {
+        return valeurText;
+    }
+
+    public Date getValeurDate() {
+        return valeurDate;
     }
 
     @Override

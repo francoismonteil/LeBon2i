@@ -26,7 +26,6 @@ public class JpaUtilisateurDao extends JpaDao<Utilisateur> implements Utilisateu
     @Override
     public Utilisateur find(Class c,Integer id) {
         return (Utilisateur)session.createQuery("SELECT c FROM Utilisateur AS c WHERE idUtilisateurs = " + id, c).getResultList().get(0);
-        //return super.find(c, id);
     }
 
     @Override

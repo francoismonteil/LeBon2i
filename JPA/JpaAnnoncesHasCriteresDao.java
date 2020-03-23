@@ -9,6 +9,8 @@ import org.hibernate.Session;
 import java.util.Collection;
 
 public class JpaAnnoncesHasCriteresDao extends JpaDao<AnnoncesHasCriteres> implements AnnoncesHasCriteresDao {
+    private Class classAnnonceHasCritere = new AnnoncesHasCriteres().getClass();
+
     @Override
     public Session getSession() {
         return super.getSession();
@@ -47,5 +49,13 @@ public class JpaAnnoncesHasCriteresDao extends JpaDao<AnnoncesHasCriteres> imple
     @Override
     public void close() {
         super.close();
+    }
+
+    public Collection<AnnoncesHasCriteres> findByAnnonce(Integer idAnnonce) {
+        String query = "SELECT c"
+                + " FROM " + classAnnonceHasCritere.getName() + " AS c " +
+                "WHERE c.annonce = " + idAnnonce;
+        System.out.println(query);
+        return session.createQuery(query).getResultList();
     }
 }

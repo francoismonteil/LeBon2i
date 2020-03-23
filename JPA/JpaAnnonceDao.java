@@ -22,7 +22,7 @@ public class JpaAnnonceDao extends JpaDao<Annonce> implements AnnonceDao {
 
     @Override
     public Annonce find(Class c, Integer id) {
-        return super.find(c, id);
+        return (Annonce)session.createQuery("SELECT c FROM Annonce AS c WHERE idAnnonces = " + id, c).getResultList().get(0);
     }
 
     @Override
@@ -50,11 +50,12 @@ public class JpaAnnonceDao extends JpaDao<Annonce> implements AnnonceDao {
         super.close();
     }
 
-    @Override
+
     public Collection<Annonce> findByUtilisateur(Integer idUtilisateur) {
         return session.createQuery("SELECT c"
                 + " FROM " + classAnnonce.getName() + " AS c " +
                 "WHERE c.utilisateur =" + idUtilisateur
         ).getResultList();
     }
+
 }

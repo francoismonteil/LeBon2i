@@ -18,6 +18,8 @@ public class MesAnnonces extends JFrame implements ActionListener {
     private AnnonceDao annonceManager = new JpaAnnonceDao();
     private Collection<Annonce> annonces;
     private JTable table_annonces;
+    private Modification modification;
+    private int ligneModifie = -1;
 
     public MesAnnonces(Utilisateur utilisateur){
         this.utilisateur = utilisateur;
@@ -56,8 +58,10 @@ public class MesAnnonces extends JFrame implements ActionListener {
 
         table_annonces = new JTable(donnees, entetes);
         table_annonces.getSelectionModel().addListSelectionListener(event -> {
-            if (table_annonces.getSelectedRow() > -1) {
-                System.out.println(table_annonces.getValueAt(table_annonces.getSelectedRow(), 0));
+            if (table_annonces.getSelectedRow() > -1 && modification == null) {
+                Annonce a = annonceManager.find(Annonce.class, Integer.parseInt((String)table_annonces.getValueAt(table_annonces.getSelectedRow(), 0)));
+                modification = new Modification(this, a);
+                this.ligneModifie = table_annonces.getSelectedRow();
             }
         });
 
@@ -82,5 +86,14 @@ public class MesAnnonces extends JFrame implements ActionListener {
     public void refreshTable(Annonce a){
         DefaultTableModel model = (DefaultTableModel) table_annonces.getModel();
         model.addRow(new String[]{String.valueOf(a.getIdAnnonces()), a.getTitre(), a.getCategorie().toString(), a.getPrix()+" €"});
+    }
+
+    public void refreshRow(Annonce a){
+        this.modification = null;
+        this.table_annonces.getModel().setValueAt(String.valueOf(a.getIdAnnonces()), ligneModifie, 0);
+        this.table_annonces.getModel().setValueAt(a.getTitre(), ligneModifie, 1);
+        this.table_annonces.getModel().setValueAt(a.getCategorie().getLabel(), ligneModifie, 2);
+        this.table_annonces.getModel().setValueAt(a.getPrix()+"€", ligneModifie, 3);
+        this.table_annonces.clearSelection();
     }
 }
