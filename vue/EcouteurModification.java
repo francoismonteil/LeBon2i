@@ -86,7 +86,7 @@ public class EcouteurModification extends Thread {
                             if(cat == this.annonce.getCategorie()){
                                 Collection<AnnoncesHasCriteres> ahcs = ahcManager.findByAnnonce(this.annonce.getIdAnnonces());
                                 for (AnnoncesHasCriteres ahc:ahcs) {
-                                    if(ahc.getCritere() == crit){
+                                    if(ahc.getCriteres() == crit){
                                         vpc.setSelectedItem(ahc);
                                     }
                                 }

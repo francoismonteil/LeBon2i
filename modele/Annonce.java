@@ -38,7 +38,7 @@ public class Annonce {
     @JoinColumn(name="VILLES_IDVILLES",referencedColumnName = "IDVILLES",nullable = true)
     private Ville ville;
 
-    @OneToMany(mappedBy="annonce", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="annonces", cascade = {CascadeType.ALL})
     private List<AnnoncesHasCriteres> annoncesHasCriteres;
 
     public Annonce(){

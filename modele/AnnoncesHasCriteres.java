@@ -10,16 +10,16 @@ public class AnnoncesHasCriteres {
     @EmbeddedId
     private AnnoncesHasCriteresId id;
 
-    @ManyToOne
-    //@MapsId("Annonces_idAnnonces")
-    //@JoinColumn(name="ANNONCES_IDANNONCES",referencedColumnName = "IDANNONCES",nullable = true)
-    private Annonce annonce;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @MapsId("Annonces_idAnnonces")
+    //@JoinColumn(name="ANNONCES_IDANNONCES",referencedColumnName = "ANNONCEID",nullable = true)
+    private Annonce annonces;
 
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("Criteres_idCriteres")
     //@JoinColumn(name="CRITERES_IDCRITERES",referencedColumnName = "IDCRITERES",nullable = true)
-    private Critere critere;
+    private Critere criteres;
 
     @Basic
     @Column(name = "VALEURINT")
@@ -37,8 +37,8 @@ public class AnnoncesHasCriteres {
     }
 
     public AnnoncesHasCriteres(Annonce annonce, Critere critere, float valeurInt) {
-        this.annonce = annonce;
-        this.critere = critere;
+        this.annonces = annonce;
+        this.criteres = critere;
         this.id = new AnnoncesHasCriteresId(annonce.getIdAnnonces(), critere.getIdCriteres());
         this.valeurInt = valeurInt;
         this.valeurText = valeurText;
@@ -46,8 +46,8 @@ public class AnnoncesHasCriteres {
     }
 
     public AnnoncesHasCriteres(Annonce annonce, Critere critere, String valeurText) {
-        this.annonce = annonce;
-        this.critere = critere;
+        this.annonces = annonce;
+        this.criteres = critere;
         this.id = new AnnoncesHasCriteresId(annonce.getIdAnnonces(), critere.getIdCriteres());
         this.valeurInt = valeurInt;
         this.valeurText = valeurText;
@@ -55,16 +55,20 @@ public class AnnoncesHasCriteres {
     }
 
     public AnnoncesHasCriteres(Annonce annonce, Critere critere,Date valeurDate) {
-        this.annonce = annonce;
-        this.critere = critere;
+        this.annonces = annonce;
+        this.criteres = critere;
         this.id = new AnnoncesHasCriteresId(annonce.getIdAnnonces(), critere.getIdCriteres());
         this.valeurInt = valeurInt;
         this.valeurText = valeurText;
         this.valeurDate = valeurDate;
     }
 
-    public Critere getCritere() {
-        return critere;
+    public Annonce getAnnonces() {
+        return annonces;
+    }
+
+    public Critere getCriteres() {
+        return criteres;
     }
 
     public Float getValeurInt() {
@@ -84,12 +88,12 @@ public class AnnoncesHasCriteres {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AnnoncesHasCriteres that = (AnnoncesHasCriteres) o;
-        return Objects.equals(annonce, that.annonce) &&
-                Objects.equals(critere, that.critere);
+        return Objects.equals(annonces, that.annonces) &&
+                Objects.equals(criteres, that.criteres);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(annonce, critere);
+        return Objects.hash(annonces, criteres);
     }
 }

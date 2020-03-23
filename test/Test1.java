@@ -1,15 +1,15 @@
 package test;
 
+import DAO.AnnoncesHasCriteresDao;
 import DAO.CritereDao;
 import DAO.ValeurPossibleDao;
+import JPA.JpaAnnoncesHasCriteresDao;
 import JPA.JpaCritereDao;
 import JPA.JpaValeurPossibleDao;
-import modele.Critere;
-import modele.ValeurPossible;
+import modele.*;
 import vue.Inscription;
 import DAO.CategorieDao;
 import JPA.JpaCategorieDao;
-import modele.Categorie;
 import vue.Accueil;
 
 import java.util.Collection;
@@ -63,5 +63,16 @@ public class Test1 {
             System.out.println(vp2.getValeurText());
         });// fin 4/
 
+        // 5/ Récupération des annonceshascritere par annonces
+        AnnoncesHasCriteresDao ahcManager = new JpaAnnoncesHasCriteresDao();
+
+        Collection<AnnoncesHasCriteres> ahcs = ahcManager.findByAnnonce(4);
+
+        //Collection<AnnoncesHasCriteres> ahcs = ahcManager.findAll(new AnnoncesHasCriteres().getClass());
+
+        ahcs.forEach(annoncesHasCriteres -> {
+            AnnoncesHasCriteres annoncesHasCriteres2 = (AnnoncesHasCriteres) annoncesHasCriteres;
+            System.out.println(annoncesHasCriteres2.getAnnonces().getTitre());
+        });// fin 5/
     }
 }

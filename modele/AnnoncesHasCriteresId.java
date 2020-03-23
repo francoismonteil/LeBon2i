@@ -13,8 +13,7 @@ public class AnnoncesHasCriteresId implements Serializable {
     @Column(name = "CRITERES_IDCRITERES")
     private int critereId;
 
-    private AnnoncesHasCriteresId(){
-
+    public AnnoncesHasCriteresId(){
     }
 
     public AnnoncesHasCriteresId(int annonceId, int critereId){

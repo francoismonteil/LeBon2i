@@ -54,7 +54,7 @@ public class JpaAnnoncesHasCriteresDao extends JpaDao<AnnoncesHasCriteres> imple
     public Collection<AnnoncesHasCriteres> findByAnnonce(Integer idAnnonce) {
         String query = "SELECT c"
                 + " FROM " + classAnnonceHasCritere.getName() + " AS c " +
-                "WHERE c.annonce = " + idAnnonce;
+                "WHERE c.annonces = " + idAnnonce;
         System.out.println(query);
         return session.createQuery(query).getResultList();
     }

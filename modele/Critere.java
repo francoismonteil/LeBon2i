@@ -22,7 +22,7 @@ public class Critere {
     @JoinColumn(name="CATEGORIES_IDCATEGORIES",referencedColumnName = "IDCATEGORIES",nullable = true)
     private Categorie categorie;
 
-    @OneToMany(mappedBy="critere", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy="criteres", cascade = {CascadeType.ALL})
     private List<AnnoncesHasCriteres> annoncesHasCriteres;
 
     @OneToMany(mappedBy="critere", cascade = {CascadeType.ALL})
