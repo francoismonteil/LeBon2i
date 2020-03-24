@@ -7,4 +7,5 @@ import java.util.Collection;
 
 public interface AnnonceDao extends Dao<Annonce> {
     public Collection<Annonce> findByUtilisateur(Integer idUtilisateur);
+    public int updateAnnonce(Annonce annonce);
 }

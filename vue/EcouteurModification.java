@@ -2,6 +2,7 @@ package vue;
 
 import DAO.*;
 import JPA.*;
+import com.sun.javaws.IconUtil;
 import modele.*;
 
 import javax.swing.*;
@@ -62,7 +63,7 @@ public class EcouteurModification extends Thread {
         }
     }
 
-    public void displayCriteres(Categorie cat){
+    public void displayCriteres(Categorie cat) throws ParseException {
         a.zoneCrit.removeAll();
         crits.clear();
         valeurs.clear();
@@ -79,23 +80,52 @@ public class EcouteurModification extends Thread {
                         case "ComboBox":
                             JComboBox<ValeurPossible> vpc = new JComboBox<ValeurPossible>();
                             vpc.setPreferredSize(new Dimension(250,30));
-                            Collection<ValeurPossible> vps = vpManager.findByCritere(crit.getIdCriteres());
-                            for (ValeurPossible vp:vps) {
-                                vpc.addItem(vp);
-                            }
+                            String valueBdd = null;
                             if(cat == this.annonce.getCategorie()){
                                 Collection<AnnoncesHasCriteres> ahcs = ahcManager.findByAnnonce(this.annonce.getIdAnnonces());
                                 for (AnnoncesHasCriteres ahc:ahcs) {
                                     if(ahc.getCriteres() == crit){
-                                        vpc.setSelectedItem(ahc);
+                                        if (ahc.getValeurDate() != null){
+                                            valueBdd = ahc.getValeurDate().toString();
+                                        }else if(ahc.getValeurInt() != null){
+                                            valueBdd = String.valueOf(ahc.getValeurInt());
+                                        }else if(ahc.getValeurText() != null){
+                                            valueBdd = ahc.getValeurText();
+                                        }
+                                        break;
                                     }
                                 }
                             }
+
+                            Collection<ValeurPossible> vps = vpManager.findByCritere(crit.getIdCriteres());
+                            for (ValeurPossible vp:vps) {
+                                vpc.addItem(vp);
+                                if ((String.valueOf(vp.getValeurInt()).equals(valueBdd) || vp.getValeurText().equals(valueBdd))){
+                                    vpc.setSelectedItem(vp);
+                                }
+                            }
+
                             a.zoneCrit.add(vpc);
                             valeurs.add(vpc);
                             break;
                         default:
                             JTextField vpd = new JTextField();
+                            Collection<AnnoncesHasCriteres> ahcs = ahcManager.findByAnnonce(this.annonce.getIdAnnonces());
+                            for (AnnoncesHasCriteres ahc:ahcs) {
+                                System.out.println(crit);
+                                System.out.println(ahc.getCriteres());
+                                if(ahc.getCriteres().getLabel().equals(crit.getLabel())){
+                                    if (ahc.getValeurDate() != null){
+                                        String valueDate = new SimpleDateFormat("dd/MM/yyyy").format(ahc.getValeurDate());
+                                        vpd.setText(valueDate);
+                                    }else if(ahc.getValeurInt() != null){
+                                        vpd.setText(ahc.getValeurInt().toString());
+                                    }else if(ahc.getValeurText() != null){
+                                        vpd.setText(ahc.getValeurText());
+                                    }
+                                    break;
+                                }
+                            }
                             vpd.setPreferredSize(new Dimension(250,30));
                             a.zoneCrit.add(vpd);
                             valeurs.add(vpd);
@@ -108,28 +138,35 @@ public class EcouteurModification extends Thread {
         }
     }
 
-    public Annonce addAnnonce(String titre, String description, float prix, String image, Utilisateur utilisateur, Categorie categorie, Ville ville) throws ParseException {
-        Annonce annonce = new Annonce(titre, description, prix, image, utilisateur, categorie, ville);
-        annonceManager.create(annonce);
+    public boolean modifierAnnonce(Annonce annonceM) {
+        this.annonce = annonceM;
+        System.out.println(annonceM);
+        annonceManager.updateAnnonce(annonceM);
+        ahcManager.deleteByAnnonce(annonceM.getIdAnnonces());
+        return true;
+    }
+
+
+    public void ajoutAnnonceHasCritere() throws ParseException {
+        ahcManager.clear();
         for(int ite=0;ite<crits.size();ite++){
             if(crits.get(ite).getType().equals("int")){
                 JTextField value = (JTextField)valeurs.get(ite);
                 float valueInt = Float.parseFloat(value.getText());
-                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueInt);
+                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(this.annonce, crits.get(ite), valueInt);
                 ahcManager.create(ahc);
             }else if(crits.get(ite).getType().equals("ComboBox")){
                 JComboBox<ValeurPossible> value = (JComboBox<ValeurPossible>)valeurs.get(ite);
                 ValeurPossible valueVp = (ValeurPossible)value.getSelectedItem();
                 String valueString = Objects.requireNonNull(value.getSelectedItem()).toString();
-                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueString);
+                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(this.annonce, crits.get(ite), valueString);
                 ahcManager.create(ahc);
             }else if(crits.get(ite).getType().equals("date")){
                 JTextField value = (JTextField)valeurs.get(ite);
                 Date valueDate = new SimpleDateFormat("dd/MM/yyyy").parse(value.getText());
-                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(annonce, crits.get(ite), valueDate);
+                AnnoncesHasCriteres ahc = new AnnoncesHasCriteres(this.annonce, crits.get(ite), valueDate);
                 ahcManager.create(ahc);
             }
         }
-        return annonce;
     }
 }

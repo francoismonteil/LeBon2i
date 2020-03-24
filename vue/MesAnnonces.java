@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.Collection;
 import java.util.Vector;
 
@@ -60,7 +61,11 @@ public class MesAnnonces extends JFrame implements ActionListener {
         table_annonces.getSelectionModel().addListSelectionListener(event -> {
             if (table_annonces.getSelectedRow() > -1 && modification == null) {
                 Annonce a = annonceManager.find(Annonce.class, Integer.parseInt((String)table_annonces.getValueAt(table_annonces.getSelectedRow(), 0)));
-                modification = new Modification(this, a);
+                try {
+                    modification = new Modification(this, a);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 this.ligneModifie = table_annonces.getSelectedRow();
             }
         });

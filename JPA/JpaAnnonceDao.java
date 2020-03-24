@@ -4,6 +4,8 @@ import DAO.AnnonceDao;
 import modele.Annonce;
 import modele.Categorie;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.Collection;
 
@@ -48,6 +50,23 @@ public class JpaAnnonceDao extends JpaDao<Annonce> implements AnnonceDao {
     @Override
     public void close() {
         super.close();
+    }
+
+    public int updateAnnonce(Annonce annonce){
+        Transaction tnx = session.beginTransaction();
+        String SQL = "UPDATE "+ classAnnonce.getName()+" as c ";
+        SQL += " SET titre = :titre, description = :description, prix = :prix, image = :image, categorie = :categorie ";
+        SQL += " WHERE idAnnonces = :id";
+        Query query = session.createQuery(SQL);
+        query.setParameter("titre", annonce.getTitre());
+        query.setParameter("description", annonce.getDescription());
+        query.setParameter("prix", annonce.getPrix());
+        query.setParameter("image", null);
+        query.setParameter("categorie", annonce.getCategorie());
+        query.setParameter("id", annonce.getIdAnnonces());
+        int id = query.executeUpdate();
+        tnx.commit();
+        return id;
     }
 
 
