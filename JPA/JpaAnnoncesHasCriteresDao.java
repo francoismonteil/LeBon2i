@@ -3,6 +3,7 @@ package JPA;
 import DAO.AnnoncesHasCriteresDao;
 import modele.AnnoncesHasCriteres;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.Collection;
 
@@ -49,11 +50,22 @@ public class JpaAnnoncesHasCriteresDao extends JpaDao<AnnoncesHasCriteres> imple
         super.close();
     }
 
+    public void clear(){
+        session.clear();
+    }
+
     public Collection<AnnoncesHasCriteres> findByAnnonce(Integer idAnnonce) {
         String query = "SELECT c"
                 + " FROM " + classAnnonceHasCritere.getName() + " AS c " +
                 "WHERE c.annonces = " + idAnnonce;
-        System.out.println(query);
+
         return session.createQuery(query).getResultList();
+    }
+
+    public void deleteByAnnonce(Integer idAnnonce){
+        String query = "DELETE "+classAnnonceHasCritere.getName()+" as c WHERE c.annonces = "+idAnnonce;
+        Transaction tnx = session.beginTransaction();
+        session.createQuery(query).executeUpdate();
+        tnx.commit();
     }
 }
