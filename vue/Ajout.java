@@ -33,7 +33,7 @@ public class Ajout extends JFrame implements ActionListener {
         this.setTitle("LeBon2i");
         this.setSize(500, 600);
         this.setLocationRelativeTo(null);
-//        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         this.setLayout(new GridLayout(3,1));
         //Définition des deux premières zones

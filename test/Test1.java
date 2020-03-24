@@ -1,23 +1,23 @@
 package test;
 
 import DAO.AnnoncesHasCriteresDao;
+import DAO.CategorieDao;
 import DAO.CritereDao;
 import DAO.ValeurPossibleDao;
 import JPA.JpaAnnoncesHasCriteresDao;
+import JPA.JpaCategorieDao;
 import JPA.JpaCritereDao;
 import JPA.JpaValeurPossibleDao;
-import modele.*;
-import vue.Inscription;
-import DAO.CategorieDao;
-import JPA.JpaCategorieDao;
-import vue.Accueil;
+import modele.AnnoncesHasCriteres;
+import modele.Categorie;
+import modele.Critere;
+import modele.ValeurPossible;
 
 import java.util.Collection;
-import java.util.List;
 
 public class Test1 {
     public static void main(String[] args) {
-        //Inscription fenetre = new Inscription();
+
         System.out.println("Coucou");
 
         // Instanciation du manager

@@ -1,6 +1,5 @@
 package modele;
 import javax.persistence.*;
-import javax.rmi.CORBA.Util;
 import java.util.List;
 
 @Entity
@@ -41,12 +40,6 @@ public class Ville {
 
     @Override
     public String toString() {
-        return "Ville{" +
-                "idVilles=" + idVilles +
-                ", codePostal='" + codePostal + '\'' +
-                ", nomVille='" + nomVille + '\'' +
-                ", utilisateurs=" + utilisateurs +
-                ", annonces=" + annonces +
-                '}';
+        return nomVille;
     }
 }

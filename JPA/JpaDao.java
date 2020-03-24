@@ -2,17 +2,11 @@ package JPA;
 
 import DAO.Dao;
 import modele.*;
-import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import java.util.Collection;
 
 
@@ -46,7 +40,6 @@ public abstract class JpaDao<T> implements Dao<T> {
         if (session == null)
         {
             session = ourSessionFactory.openSession();
-            session.setFlushMode(FlushMode.ALWAYS);
         }
         return session;
     }
@@ -65,7 +58,6 @@ public abstract class JpaDao<T> implements Dao<T> {
         T obj = (T) session.load(c,id);
         return(obj);
     }
-
 
     @Override
     public Collection<T> findAll(Class c) {

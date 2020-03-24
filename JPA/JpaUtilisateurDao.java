@@ -1,13 +1,9 @@
 package JPA;
 
-import DAO.AnnonceDao;
 import DAO.UtilisateurDao;
-import modele.Annonce;
-import modele.Critere;
 import modele.Utilisateur;
 import org.hibernate.Session;
 
-import javax.rmi.CORBA.Util;
 import java.util.Collection;
 
 public class JpaUtilisateurDao extends JpaDao<Utilisateur> implements UtilisateurDao {
@@ -26,6 +22,17 @@ public class JpaUtilisateurDao extends JpaDao<Utilisateur> implements Utilisateu
     @Override
     public Utilisateur find(Class c,Integer id) {
         return (Utilisateur)session.createQuery("SELECT c FROM Utilisateur AS c WHERE idUtilisateurs = " + id, c).getResultList().get(0);
+    }
+
+    @Override
+    public boolean check(String mail, String mdp){
+        long query = (long)session.createQuery("SELECT count(*) FROM Utilisateur WHERE mail = '" + mail + "' AND motDePasse = '" + mdp +"'").getResultList().get(0);
+        if(query == 1){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     @Override

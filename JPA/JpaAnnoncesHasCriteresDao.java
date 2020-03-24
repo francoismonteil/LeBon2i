@@ -1,8 +1,6 @@
 package JPA;
 
-import DAO.AnnonceDao;
 import DAO.AnnoncesHasCriteresDao;
-import modele.Annonce;
 import modele.AnnoncesHasCriteres;
 import org.hibernate.Session;
 
