@@ -17,7 +17,7 @@ Team :
     - Hibernate
     - JavaEE Persistance (en utilisant la version 2.1)
   - Terminer de créer le projet sans rien parmétrer d'autre
-- Une fois le projet créer, cliquer sur "File"
+- Une fois le projet créé, cliquer sur "File"
 - Project structure
 - Libraries, +
 - From Maven
