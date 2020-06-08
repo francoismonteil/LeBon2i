@@ -23,3 +23,9 @@ Team :
 - From Maven
 - Taper "mysql" et cliquer sur la loupe
 - Choisissez "mysql:mysql-connector-java:8.0.19" et cliquer sur OK
+
+## Lancer le projet LeBon2i
+- Ouvrir le projet
+- Lancer dans le package test la configuration 'InitBdd'
+- Lancer dans ce même package la configuration 'Main'
+  - Il est possible de se connecter à l'application via les identifiants test/test.
