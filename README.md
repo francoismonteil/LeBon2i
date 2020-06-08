@@ -28,4 +28,5 @@ Team :
 - Ouvrir le projet
 - Lancer dans le package test la configuration 'InitBdd'
 - Lancer dans ce même package la configuration 'Main'
+  - L'interface de connexion va s'afficher.
   - Il est possible de se connecter à l'application via les identifiants test/test.
