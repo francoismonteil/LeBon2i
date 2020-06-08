@@ -24,6 +24,10 @@ public class JpaUtilisateurDao extends JpaDao<Utilisateur> implements Utilisateu
         return (Utilisateur)session.createQuery("SELECT c FROM Utilisateur AS c WHERE idUtilisateurs = " + id, c).getResultList().get(0);
     }
 
+    public Utilisateur findUser(Class c,String mail, String password) {
+        return (Utilisateur)session.createQuery("SELECT c FROM Utilisateur AS c WHERE mail = '" + mail + "' AND motDePasse = '" + password + "'", c).getResultList().get(0);
+    }
+
     @Override
     public boolean check(String mail, String mdp){
         long query = (long)session.createQuery("SELECT count(*) FROM Utilisateur WHERE mail = '" + mail + "' AND motDePasse = '" + mdp +"'").getResultList().get(0);

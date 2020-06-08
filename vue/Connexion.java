@@ -1,5 +1,8 @@
 package vue;
 
+import JPA.JpaUtilisateurDao;
+import modele.Utilisateur;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,6 +11,8 @@ import java.awt.event.ActionListener;
 public class Connexion extends JFrame implements ActionListener {
 
     private EcouteurConnexion ec = new EcouteurConnexion(this);
+    JpaUtilisateurDao user = new JpaUtilisateurDao();
+    Utilisateur u = new Utilisateur();
     private JPasswordField mdp;
     private JTextField mail;
     public JButton button_connexion;
@@ -63,7 +68,8 @@ public class Connexion extends JFrame implements ActionListener {
             boolean test = ec.getUtilisateur(mail_utilisateur,mdp_utilisateur);
             if (test)
             {
-                Accueil a = new Accueil();
+                u = user.findUser(Utilisateur.class, mail_utilisateur, mdp_utilisateur);
+                Accueil a = new Accueil(u);
             }
         }
     }
